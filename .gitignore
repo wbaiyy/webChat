@@ -1,6 +1,6 @@
 /vendor/
 /.idea/
-*.lock
+.lock
 *.log
 /log/
 /client/uploads/
