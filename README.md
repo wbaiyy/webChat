@@ -1,7 +1,7 @@
 WebIM
 ========
 
-使用PHP+Swoole实现的网页即时聊天工具，在线体验地址：[http://webim.swoole.com/](http://webim.swoole.com/)
+使用PHP+Swoole实现的网页即时聊天工具
 
 * 全异步非阻塞Server，可以同时支持数百万TCP连接在线
 * 基于websocket+flash_websocket支持所有浏览器/客户端/移动端
@@ -21,7 +21,7 @@ swoole扩展
 pecl install swoole
 ```
 
-swoole框架
+php swoole框架
 ```shell
 composer install
 ```
@@ -97,6 +97,19 @@ CREATE TABLE `webim_history` (
   `send_ip` varchar(20) COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
+
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `avatar` varchar(512) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '头像',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 ```
 
 * 修改`configs/webim.php`中的选项，设置服务器的URL和端口
